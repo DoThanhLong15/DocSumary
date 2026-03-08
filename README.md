@@ -1,4 +1,4 @@
-# Next.js + NestJS Fullstack Roadmap (Junior → Senior)
+# Next.js + NestJS Fullstack Roadmap
 
 A **production-ready roadmap** for developers who want to become a **Fullstack Engineer** using the **Next.js + NestJS** stack.
 
@@ -25,12 +25,12 @@ A **production-ready roadmap** for developers who want to become a **Fullstack E
 
 Topics to learn:
 
-* [HTTP / HTTPS](./internet-fundamentals/http.md)
-* [DNS](./internet-fundamentals/dns.md)
-* [Browser rendering](./internet-fundamentals/browser-rendering.md)
-* [Cookies](./internet-fundamentals/cookies.md)
-* [Sessions](./internet-fundamentals/sessions.md)
-* [REST APIs](./internet-fundamentals/rest-apis.md)
+* [HTTP / HTTPS](./Programming%20&%20Web%20Fundamentals/Internet%20Fundamentals/http.md)
+* [DNS](./Programming%20&%20Web%20Fundamentals/Internet%20Fundamentals/dns.md)
+* [Browser rendering](./Programming%20&%20Web%20Fundamentals/Internet%20Fundamentals/browser-rendering.md)
+* [Cookies](./Programming%20&%20Web%20Fundamentals/Internet%20Fundamentals/cookies.md)
+* [Sessions](./Programming%20&%20Web%20Fundamentals/Internet%20Fundamentals/sessions.md)
+* [REST APIs](./Programming%20&%20Web%20Fundamentals/Internet%20Fundamentals/rest-apis.md)
 
 ---
 
@@ -45,6 +45,8 @@ Topics:
 * Promises
 * Event Loop
 * Modules
+
+--> [Doc](./Programming%20&%20Web%20Fundamentals/javascript-core.md)
 
 ---
 
@@ -63,6 +65,8 @@ Topics:
 
 * Write **type-safe code**
 * Understand the **TypeScript type system**
+
+--> [Doc](./Programming%20&%20Web%20Fundamentals/typescript.md)
 
 ---
 
