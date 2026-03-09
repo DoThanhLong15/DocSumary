@@ -157,6 +157,8 @@ Topics:
 * Layouts
 * Middleware
 
+--> [Doc](./Next.js%20Development/routing.md)
+
 ---
 
 ## 2.2 Rendering
@@ -169,6 +171,8 @@ Rendering strategies:
 * CSR (Client-Side Rendering)
 * React Server Components
 
+--> [Doc](./Next.js%20Development/rendering.md)
+
 ---
 
 ## 2.3 Forms & Validation
@@ -178,19 +182,21 @@ Libraries:
 * React Hook Form
 * Zod
 
+--> [Doc](./Next.js%20Development/forms-validation.md)
+
 ---
 
 ## 2.4 UI Systems
 
 Tools:
 
-* Tailwind CSS
-* shadcn/ui
+* [Tailwind CSS](./Next.js%20Development/ui-systems/tailwind-css.md)
+* [shadcn/ui](./Next.js%20Development/ui-systems/shadcn-ui.md)
 
 Concepts:
 
-* Design Systems
-* Reusable UI Components
+* [Design Systems](./Next.js%20Development/ui-systems/design-systems.md)
+* [Reusable UI Components](./Next.js%20Development/ui-systems/reusable-ui-components.md)
 
 ---
 
