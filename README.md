@@ -212,10 +212,10 @@ Framework:
 
 Concepts:
 
-* Controllers
-* Providers
-* Modules
-* Dependency Injection
+* [Controllers](./NestJS/NestJS%20Fundametals/controllers.md)
+* [Providers](./NestJS/NestJS%20Fundametals/providers.md)
+* [Modules](./NestJS/NestJS%20Fundametals/modules.md)
+* [Dependency Injection](./NestJS/NestJS%20Fundametals/dependency-injection.md)
 
 ---
 
