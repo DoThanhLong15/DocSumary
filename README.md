@@ -223,10 +223,10 @@ Concepts:
 
 Topics:
 
-* REST APIs
-* DTO Pattern
-* Validation
-* Error Handling
+* [REST APIs](./NestJS/API%20Design/rest-apis.md)
+* [DTO Pattern](./NestJS/API%20Design/dto-pattern.md)
+* [Validation](./NestJS/API%20Design/validation.md)
+* [Error Handling](./NestJS/API%20Design/error-handling.md)
 
 Libraries:
 
