@@ -239,8 +239,8 @@ Libraries:
 
 Technologies:
 
-* JWT
-* Passport
+* [JWT](./NestJS/Authentication/jwt.md)
+* [Passport](./NestJS/Authentication/passport.md)
 
 Concepts:
 
