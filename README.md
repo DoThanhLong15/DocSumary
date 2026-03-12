@@ -230,8 +230,8 @@ Topics:
 
 Libraries:
 
-* class-validator
-* class-transformer
+* [class-validator](./NestJS/API%20Design/class-validator.md)
+* [class-transformer](./NestJS/API%20Design/class-transformer.md)
 
 ---
 
