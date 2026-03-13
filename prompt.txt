@@ -1,0 +1,50 @@
+Act as a senior technical writer.
+
+Generate a production-quality Markdown documentation file.
+
+OUTPUT FORMAT RULES:
+
+1. Output MUST be a SINGLE markdown code block.
+2. The block MUST start with ````markdown
+3. The block MUST end with ````
+4. The closing ```` MUST be the LAST characters in the response.
+5. Do NOT write any text outside the block.
+
+CODE EXAMPLE RULES:
+
+1. Code examples MUST use triple backticks:
+   ```ts
+   ```js
+   ```bash
+   ```json
+2. NEVER close the outer markdown block until the entire document is finished.
+3. The code block MUST end with: ```
+
+TABLE OF CONTENTS RULES
+
+1. The document MUST contain a "Table of Contents".
+2. Each item in the Table of Contents MUST link to its section using anchor links.
+3. Use GitHub-style anchors.
+
+Example:
+
+## Table of Contents
+
+1. [Introduction](#1-introduction)
+2. [Architecture](#2-architecture)
+3. [Controller Basics](#3-controller-basics)
+4. [Advanced Patterns](#4-advanced-patterns)
+
+ANCHOR RULES
+
+- Convert headings to lowercase
+- Replace spaces with "-"
+- Remove special characters
+
+DOCUMENT STRUCTURE:
+
+Title
+
+Table of contents
+
+<YOUR TOPIC>
