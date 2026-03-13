@@ -7,7 +7,6 @@ A **production-ready roadmap** for developers who want to become a **Fullstack E
 * Build **production-ready applications**
 * Understand **system architecture**
 * Be able to **design scalable systems**
-* Work at a **Senior / Tech Lead level**
 
 ---
 
@@ -256,7 +255,7 @@ Concepts:
 
 Database:
 
-* PostgreSQL
+* [PostgreSQL](./Database%20&%20ORM/postgres-sql.md)
 
 Topics:
 
@@ -271,14 +270,14 @@ Topics:
 
 Recommended ORM:
 
-* Prisma
+* [Prisma](./Database%20&%20ORM/ORM/prisma.md)
 
 Topics:
 
-* Schema Design
-* Migrations
-* Relations
-* Transactions
+* [Schema Design](./Database%20&%20ORM/ORM/topics/schema-design.md)
+* [Migrations](./Database%20&%20ORM/ORM/topics/migrations.md)
+* [Relations](./Database%20&%20ORM/ORM/topics/relations.md)
+* [Transactions](./Database%20&%20ORM/ORM/topics/transactions.md)
 
 ---
 
