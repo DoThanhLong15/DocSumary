@@ -37,15 +37,13 @@ Topics to learn:
 
 Topics:
 
-* Scope
-* Closures
-* Prototype
-* Async / Await
-* Promises
-* Event Loop
-* Modules
-
---> [Doc](./Programming%20&%20Web%20Fundamentals/javascript-core.md)
+* [Scope](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/scope.md)
+* [Prototype](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/prototype.md)
+* [Promises](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/promises.md)
+* [Async / Await](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/async-await.md)
+* [Event Loop](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/event-loop.md)
+* [Modules](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/modules.md)
+* [Closures](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/closures.md)
 
 ---
 
