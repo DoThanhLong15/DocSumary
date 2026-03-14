@@ -45,6 +45,10 @@ Topics:
 * [Modules](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/modules.md)
 * [Closures](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/closures.md)
 
+Advance:
+
+* [Async Generator](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/async-generator.md)
+
 ---
 
 ## 0.3 TypeScript
