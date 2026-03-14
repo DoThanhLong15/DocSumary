@@ -683,16 +683,35 @@ Excessive microtasks can delay rendering.
 
 # 16. Interview-Level Questions
 
-1. What is the JavaScript Event Loop?
-2. How do microtasks differ from macrotasks?
-3. Why do Promise callbacks run before `setTimeout`?
-4. What happens when `await` is executed?
-5. What causes UI blocking in JavaScript?
-6. What is the difference between `process.nextTick` and Promise callbacks?
-7. How does the Node.js event loop differ from the browser event loop?
-8. Why does `setTimeout(..., 0)` not execute immediately?
-9. What happens if microtasks continuously schedule new microtasks?
-10. How does rendering interact with the event loop?
+> 1. What is the JavaScript Event Loop?
+- The JavaScript Event Loop is a mechanism that allows JavaScript to handle asynchronous operations while running on a single thread. It continuously monitors the call stack and task queues. When the call stack becomes empty, the event loop takes tasks from the queues (macrotask queue and microtask queue) and pushes them onto the stack for execution.
+
+> 2. How do microtasks differ from macrotasks?
+- Microtasks have higher priority than macrotasks and are executed immediately after the current script finishes and before the browser performs rendering or processes the next macrotask. Examples include Promise callbacks (`.then`, `.catch`, `.finally`) and `queueMicrotask`. Macrotasks include operations such as `setTimeout`, `setInterval`, I/O events, and UI events.
+
+> 3. Why do Promise callbacks run before `setTimeout`?
+- Promise callbacks are placed in the microtask queue, while `setTimeout` callbacks are placed in the macrotask queue. After the current script finishes executing, the event loop processes all microtasks before moving on to the next macrotask. Because of this priority, Promise callbacks run before `setTimeout` callbacks even if the timeout delay is `0`.
+
+> 4. What happens when `await` is executed?
+- When `await` is encountered inside an async function, execution of that function pauses and the awaited expression is converted into a Promise using `Promise.resolve`. The rest of the async function is scheduled as a microtask that will run once the Promise settles. The function then resumes execution with the resolved value or throws the rejection error.
+
+> 5. What causes UI blocking in JavaScript?
+- UI blocking occurs when long-running synchronous JavaScript tasks occupy the call stack for an extended period. Since the browser cannot perform rendering or process user interactions while JavaScript is executing, heavy computations, infinite loops, or large synchronous operations can freeze the UI until the task completes.
+
+> 6. What is the difference between `process.nextTick` and Promise callbacks?
+- In Node.js, `process.nextTick` schedules a callback to run immediately after the current operation completes but before the event loop proceeds to other phases. It has even higher priority than Promise microtasks. Promise callbacks are placed in the microtask queue and execute after `process.nextTick` callbacks but before macrotasks.
+
+> 7. How does the Node.js event loop differ from the browser event loop?
+- The Node.js event loop has multiple phases such as timers, pending callbacks, idle/prepare, poll, check, and close callbacks. Each phase processes its own queue of callbacks. Browsers typically have a simpler model with macrotask queues, microtask queues, and rendering steps integrated into the loop. Node.js also includes mechanisms like `process.nextTick` and `setImmediate`.
+
+> 8. Why does `setTimeout(..., 0)` not execute immediately?
+- `setTimeout(..., 0)` does not execute immediately because it schedules the callback as a macrotask. The event loop must first finish the current execution context and process all microtasks before moving to the next macrotask. Additionally, browsers often enforce a minimum delay (typically around 4ms) for nested timers.
+
+> 9. What happens if microtasks continuously schedule new microtasks?
+- If microtasks continuously schedule new microtasks, the event loop may become stuck processing them without moving on to macrotasks or rendering. This situation is known as microtask starvation and can cause UI freezes or prevent timers and I/O events from executing.
+
+> 10. How does rendering interact with the event loop?
+- In browsers, rendering typically occurs between macrotasks after the microtask queue has been fully processed. If JavaScript keeps scheduling microtasks or runs long synchronous tasks, the browser cannot render updates to the UI. This is why breaking large tasks into smaller asynchronous chunks helps maintain smooth UI performance.
 
 ---
 

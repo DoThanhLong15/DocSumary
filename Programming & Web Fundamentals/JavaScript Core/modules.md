@@ -766,16 +766,35 @@ Host App
 
 # 18. Interview-Level Questions
 
-1. What is the difference between CommonJS and ES Modules?
-2. How does module caching work?
-3. What are live bindings in ES modules?
-4. How do circular dependencies behave in ESM?
-5. What is tree shaking?
-6. What is the difference between `export default` and named exports?
-7. How does dynamic `import()` work?
-8. How does Node.js resolve modules?
-9. What role do bundlers play in module systems?
-10. Why are static imports beneficial for optimization?
+> 1. What is the difference between CommonJS and ES Modules?
+- CommonJS (CJS) is the module system traditionally used in Node.js, using `require()` to import modules and `module.exports` or `exports` to export values. ES Modules (ESM) use the standardized `import` and `export` syntax. CommonJS modules are loaded synchronously and exports are copies of values at runtime, while ES Modules are statically analyzable, support asynchronous loading in browsers, and use live bindings for exports.
+
+> 2. How does module caching work?
+- Module caching means that once a module is loaded and executed, its result is stored in memory so that subsequent imports of the same module return the cached version instead of re-executing the module code. In Node.js, the module is cached in `require.cache`. This improves performance and ensures that a module behaves like a singleton across the application.
+
+> 3. What are live bindings in ES modules?
+- Live bindings mean that when a module exports a variable, importing modules receive a reference to that variable rather than a copy. If the exported value changes in the original module, the imported reference automatically reflects the updated value.
+
+> 4. How do circular dependencies behave in ESM?
+- In ES Modules, circular dependencies are handled through live bindings and a two-phase process: module linking and execution. During linking, the module structure is established and bindings are created. During execution, modules run in dependency order. If two modules depend on each other, they may receive partially initialized exports, but the references remain valid and update once execution completes.
+
+> 5. What is tree shaking?
+- Tree shaking is an optimization technique used by bundlers to eliminate unused code from the final bundle. Because ES Modules use static import/export syntax, bundlers can analyze dependencies at build time and remove exports that are never imported or used, reducing bundle size.
+
+> 6. What is the difference between `export default` and named exports?
+- Named exports allow a module to export multiple values using specific names, which must be imported using the same names (or aliases). `export default` allows a module to export a single primary value that can be imported with any name. A module can have multiple named exports but only one default export.
+
+> 7. How does dynamic `import()` work?
+- Dynamic `import()` is a function-like syntax that loads modules asynchronously and returns a Promise that resolves to the module object. It allows conditional or lazy loading of modules, which can improve performance by loading code only when needed.
+
+> 8. How does Node.js resolve modules?
+- Node.js resolves modules using a specific algorithm. For relative paths, it looks for files or directories starting from the current file location. For package imports, it searches the `node_modules` directory hierarchy. It also reads `package.json` fields such as `main`, `module`, or `exports` to determine the entry point. Node.js supports both CommonJS and ES Modules depending on file extensions and configuration.
+
+> 9. What role do bundlers play in module systems?
+- Bundlers such as Webpack, Rollup, or Vite analyze module dependencies and combine multiple modules into optimized bundles for browsers or deployment. They can perform tasks like tree shaking, code splitting, minification, and resolving module formats to ensure efficient loading and compatibility.
+
+> 10. Why are static imports beneficial for optimization?
+- Static imports are declared at the top level and cannot be dynamically changed. This allows JavaScript engines and bundlers to analyze the dependency graph at build time. As a result, tools can perform optimizations such as tree shaking, dead code elimination, and more efficient module loading.
 
 ---
 

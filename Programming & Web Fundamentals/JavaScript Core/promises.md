@@ -821,16 +821,35 @@ Always handle `.catch()`.
 
 # 16. Interview-Level Questions
 
-1. What is a Promise in JavaScript?
-2. Explain the Promise resolution procedure.
-3. What is the difference between microtasks and macrotasks?
-4. How does Promise chaining work?
-5. What happens when a Promise resolves with another Promise?
-6. How does `async/await` relate to Promises?
-7. What is the difference between `Promise.all` and `Promise.race`?
-8. How are errors propagated in Promise chains?
-9. What causes unhandled Promise rejections?
-10. How do JavaScript engines optimize Promises?
+> 1. What is a Promise in JavaScript?
+- A Promise in JavaScript is an object that represents the eventual completion or failure of an asynchronous operation and its resulting value. A Promise can be in one of three states: pending (initial state), fulfilled (operation completed successfully), or rejected (operation failed). Promises allow developers to handle asynchronous code in a more structured and readable way compared to traditional callback-based approaches.
+
+> 2. Explain the Promise resolution procedure.
+- The Promise resolution procedure describes how a Promise determines its final state when `resolve` is called. If the resolved value is not a Promise or thenable, the Promise becomes fulfilled with that value. If the resolved value is another Promise or a thenable object, the current Promise adopts the state of that Promise. The engine recursively follows this process until a non-thenable value is obtained or a rejection occurs.
+
+> 3. What is the difference between microtasks and macrotasks?
+- Microtasks and macrotasks are two types of tasks managed by the JavaScript event loop. Microtasks have higher priority and are executed immediately after the currently running script finishes, before rendering or other macrotasks. Examples include Promise callbacks (`.then`, `.catch`, `.finally`) and `queueMicrotask`. Macrotasks include tasks such as `setTimeout`, `setInterval`, I/O operations, and DOM events. After each macrotask, the engine processes the entire microtask queue before moving to the next macrotask.
+
+> 4. How does Promise chaining work?
+- Promise chaining occurs when `.then()`, `.catch()`, or `.finally()` methods return a new Promise, allowing asynchronous operations to be executed sequentially. Each `.then()` receives the result of the previous Promise and returns either a value or another Promise. If a value is returned, it is automatically wrapped in a resolved Promise. If a Promise is returned, the next `.then()` waits until that Promise settles before executing.
+
+> 5. What happens when a Promise resolves with another Promise?
+- When a Promise resolves with another Promise, the outer Promise adopts the state of the inner Promise. This means it will remain pending until the inner Promise settles. If the inner Promise fulfills, the outer Promise fulfills with the same value. If the inner Promise rejects, the outer Promise also rejects with the same reason.
+
+> 6. How does `async/await` relate to Promises?
+- `async/await` is syntactic sugar built on top of Promises that allows asynchronous code to be written in a synchronous style. An `async` function always returns a Promise, and the `await` keyword pauses execution within that function until the awaited Promise settles. When the Promise resolves, its value is returned; when it rejects, the error is thrown and can be handled using `try...catch`.
+
+> 7. What is the difference between `Promise.all` and `Promise.race`?
+- `Promise.all` takes an iterable of Promises and returns a new Promise that fulfills when all of the input Promises fulfill, returning an array of their results. If any Promise rejects, the returned Promise immediately rejects with that error. In contrast, `Promise.race` returns a Promise that settles as soon as the first input Promise settles, whether it fulfills or rejects.
+
+> 8. How are errors propagated in Promise chains?
+- Errors in Promise chains propagate automatically down the chain until they are handled. If an error is thrown inside a `.then()` callback or a Promise rejects, the next `.catch()` handler in the chain will receive the error. If no `.catch()` exists, the error continues propagating until a handler is found or the chain ends.
+
+> 9. What causes unhandled Promise rejections?
+- Unhandled Promise rejections occur when a Promise is rejected but no `.catch()` handler is attached to handle the error. Modern JavaScript environments detect this situation and typically log a warning or trigger an `unhandledrejection` event. This often happens when developers forget to handle errors in asynchronous code or fail to return Promises properly in chains.
+
+> 10. How do JavaScript engines optimize Promises?
+- JavaScript engines optimize Promises using techniques such as microtask queues, inline caching for `.then()` handlers, and specialized internal representations for Promise states. Engines like V8 reduce overhead by avoiding unnecessary allocations, optimizing Promise resolution paths, and batching microtask execution. These optimizations make Promise handling efficient even in highly asynchronous applications.
 
 ---
 

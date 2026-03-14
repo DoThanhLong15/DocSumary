@@ -667,16 +667,35 @@ Frameworks historically implemented inheritance via prototypes.
 
 # 17. Interview-Level Questions
 
-1. What is the JavaScript prototype system?
-2. How does the prototype chain work?
-3. What happens internally when `new` is used?
-4. What is the difference between `prototype` and `__proto__`?
-5. How does property lookup work?
-6. Why are prototype methods memory efficient?
-7. How do ES6 classes relate to prototypes?
-8. What are hidden classes in V8?
-9. How does `Object.create()` work?
-10. Why is modifying built-in prototypes dangerous?
+> 1. What is the JavaScript prototype system?
+- Is the core mechanism by which objects inherit features (properties and methods) from one another, enabling code reuse and a form of object-oriented programming without explicit classes.
+
+> 2. How does the prototype chain work?
+- When you access a property or method on an object, JavaScript first searches the object itself. If not found, it travels up the chain to the object's prototype, then the prototype's prototype, and so on. This traversal continues until it finds the property or reaches null, the end of the chain, at which point it returns undefined.
+
+> 3. What happens internally when `new` is used?
+- Create an instance of a user-defined object type or one of the built-in object types that has a constructor function.
+
+> 4. What is the difference between `prototype` and `__proto__`?
+- The primary difference is that prototype is a property of constructor functions used to define inherited members, while __proto__ is a property of object instances that points to the prototype from which they inherit.
+
+> 5. How does property lookup work?
+- By first checking for the property on the object itself and, if not found, traversing up the object's prototype chain until the property is found or the end of the chain is reached.
+
+> 6. Why are prototype methods memory efficient?
+- They are stored once in a single, shared location in memory, which all instances of an object type can access and reuse.
+
+> 7. How do ES6 classes relate to prototypes?
+- Primarily syntactic sugar over JavaScript's existing prototype-based inheritance model.
+
+> 8. What are hidden classes in V8?
+- Internal structures used by the V8 engine to track the "shape" of JavaScript objects.
+
+> 9. How does `Object.create()` work?
+- The Object.create() static method in JavaScript creates a new object, using an existing object as the prototype of the newly created object.
+
+> 10. Why is modifying built-in prototypes dangerous?
+- Modifying built-in prototypes is dangerous because it alters the global behavior of the language, creating unpredictable side effects across your entire application.
 
 ---
 

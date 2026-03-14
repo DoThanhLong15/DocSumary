@@ -910,16 +910,35 @@ function useCounter() {
 
 # 17. Interview-Level Questions
 
-1. Explain lexical scope vs dynamic scope.
-2. What is the scope chain?
-3. How does JavaScript resolve variables?
-4. What is the Temporal Dead Zone?
-5. Why does `var` behave differently in loops?
-6. How do closures preserve state?
-7. What is the difference between execution context and scope?
-8. How does V8 optimize variable access?
-9. Why does `let` create a new binding per loop iteration?
-10. What are environment records?
+> 1. Explain lexical scope vs dynamic scope.
+- Lexical scope determines variable access based on the physical structure of your source code, while dynamic scope determines it based on the runtime call stack.
+
+> 2. What is the scope chain?
+- The scope chain is the hierarchical mechanism JavaScript uses to resolve variable and function references.
+
+> 3. How does JavaScript resolve variables?
+- JavaScript resolves variables through a process called identifier resolution, which involves searching for the variable's declaration within its lexical environment or scope.
+
+> 4. What is the Temporal Dead Zone?
+- A temporal dead zone (TDZ) is the area of a block where a variable is inaccessible until the moment the computer completely initializes it with a value.
+
+> 5. Why does `var` behave differently in loops?
+- This means a variable declared with var inside a loop is accessible from the entire enclosing function (or the global scope, if outside a function), and all loop iterations share a single instance of that variable.
+
+> 6. How do closures preserve state?
+- Closures preserve state by retaining a reference to the lexical environment in which they were created.
+
+> 7. What is the difference between execution context and scope?
+- Execution context is the environment created by the JavaScript engine to manage the execution of code, including memory allocation and the this binding. In contrast, scope refers to the accessibility and visibility of variables and functions within your code.
+
+> 8. How does V8 optimize variable access?
+- The V8 JavaScript engine optimizes variable access through a combination of techniques, primarily Hidden Classes, Inline Caching, and a tiered compilation pipeline that makes optimistic assumptions about data types.
+
+> 9. Why does `let` create a new binding per loop iteration?
+- `let` creates a new binding for each loop iteration to ensure that closures or functions created inside the loop capture the value of the variable specific to that iteration, which prevents a common source of bugs with var.
+
+> 10. What are environment records?
+- The Environment Record is an internal, theoretical component of a Lexical Environment in JavaScript, primarily used by the language specification to manage variable and function bindings (names and their associated values) within a specific scope.
 
 ---
 

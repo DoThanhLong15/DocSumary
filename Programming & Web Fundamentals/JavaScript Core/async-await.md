@@ -798,16 +798,106 @@ Consumer
 
 # 16. Interview-Level Questions
 
-1. Why do async functions always return Promises?
-2. What happens internally when `await` is executed?
-3. How does `await` interact with the microtask queue?
-4. Why does `await` not block the event loop?
-5. What is the difference between `Promise.all` and sequential awaits?
-6. Why does `Array.forEach` not work with async/await?
-7. What causes unhandled promise rejections?
-8. How does memory retention occur inside async functions?
-9. What happens when awaiting a non-Promise value?
-10. How would you implement concurrency limits using async/await?
+> 1. Why do async functions always return Promises?
+- In JavaScript, an `async` function is defined to always return a Promise. Internally, the engine wraps the return value in `Promise.resolve`. If the function returns a normal value, it becomes a fulfilled Promise with that value. If an error is thrown, the returned Promise is rejected with that error. This design ensures that async functions integrate consistently with the Promise-based asynchronous model.
+
+> 2. What happens internally when `await` is executed?
+- When `await` is encountered, JavaScript pauses execution of the async function and evaluates the awaited expression. The value is converted to a Promise using `Promise.resolve`. The engine then registers a continuation callback (the rest of the function) in the microtask queue. When the Promise settles, the async function resumes execution with the resolved value or throws the rejection error.
+
+> 3. How does `await` interact with the microtask queue?
+- When a Promise awaited by `await` resolves, the continuation of the async function is scheduled as a microtask. This means the resumed execution happens after the current call stack finishes but before the next macrotask (such as `setTimeout` or DOM events). Because Promise callbacks run in the microtask queue, `await` resumption has higher priority than macrotasks.
+
+> 4. Why does `await` not block the event loop?
+- `await` only pauses the execution of the current async function, not the entire JavaScript thread. When the function reaches `await`, control returns to the event loop while the Promise resolves asynchronously. Other tasks and callbacks can continue executing. When the Promise settles, the async function resumes later via the microtask queue.
+
+> 5. What is the difference between `Promise.all` and sequential awaits?
+- `Promise.all` runs multiple Promises concurrently and waits until all of them resolve (or rejects immediately if one fails). Sequential `await` statements execute operations one after another, waiting for each Promise to resolve before starting the next one. As a result, `Promise.all` is usually faster when tasks are independent because they run in parallel.
+
+> 6. Why does `Array.forEach` not work with async/await?
+- `Array.forEach` does not handle Promises returned by async callbacks. It executes all iterations synchronously without waiting for each async operation to complete. As a result, `await` inside `forEach` does not pause the loop. Instead, use `for...of` for sequential async processing or `Promise.all(array.map(...))` for concurrent execution.
+
+> 7. What causes unhandled promise rejections?
+- Unhandled Promise rejections occur when a Promise rejects and no `.catch()` handler or `try...catch` block handles the error. This often happens when developers forget to await a Promise, fail to return a Promise in a chain, or neglect to attach an error handler. Modern environments detect these cases and emit warnings or trigger `unhandledrejection` events.
+
+> 8. How does memory retention occur inside async functions?
+- Memory retention can happen because async functions preserve their execution context while waiting for awaited Promises. Variables within the function scope remain in memory until the async function completes. If large objects are captured in closures or stored in unresolved Promises, they may stay in memory longer than expected, potentially causing memory leaks.
+
+> 9. What happens when awaiting a non-Promise value?
+- If `await` is used on a non-Promise value, JavaScript automatically wraps it with `Promise.resolve`. The async function still pauses briefly and resumes in a microtask with the resolved value. For example, `await 42` behaves similarly to `await Promise.resolve(42)`.
+
+> 10. How would you implement concurrency limits using async/await?
+- Concurrency limits can be implemented by controlling how many async tasks run simultaneously. One approach is using a queue and a fixed number of worker functions that process tasks until the queue is empty.
+
+- Example:
+
+> Init Data
+```javascript
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function randomDelay() {
+  return Math.floor(Math.random() * 2000) + 500;
+}
+```
+
+> Async task source
+```javascript
+async function* taskSource(total) {
+  for (let i = 1; i <= total; i++) {
+    yield async () => {
+      const delay = randomDelay();
+
+      console.log(`Start task ${i} (${delay}ms)`);
+
+      await sleep(delay);
+
+      console.log(`Finish task ${i}`);
+
+      return { id: i, delay };
+    };
+  }
+}
+```
+
+> Worker pool
+```javascript
+async function runWithLimit(source, limit, onResult) {
+  const iterator = source[Symbol.asyncIterator]();
+
+  async function worker(id) {
+    while (true) {
+      const { value: task, done } = await iterator.next();
+      if (done) return;
+
+      const result = await task();
+      await onResult(result, id);
+    }
+  }
+
+  const workers = Array.from({ length: limit }, (_, i) => worker(i + 1));
+
+  await Promise.all(workers);
+}
+```
+
+> Consumer  
+```javascript
+async function handleResult(result, workerId) {
+  console.log(
+    `Worker ${workerId} processed task ${result.id} (${result.delay}ms)`
+  );
+}
+```
+
+> Run test
+```javascript
+await runWithLimit(
+  taskSource(20), // 20 tasks
+  3,              // 3 workers
+  handleResult
+);
+```
 
 ---
 
