@@ -14,6 +14,7 @@ This document provides a detailed exploration of **Async Generators**, **Observa
 4. [Backpressure in Async Iteration](#4-backpressure-in-async-iteration)
 5. [Advanced Patterns with Async Generators](#5-advanced-patterns-with-async-generators)
 6. [Summary](#6-summary)
+7. [Interview Questions](./interview-questions.md)
 
 ---
 
@@ -705,3 +706,7 @@ They integrate naturally with:
 - `for await...of`
 - Promises
 - modern JavaScript runtime behavior.
+
+# 7. Interview Questions
+
+- [Read more](./interview-questions.md)

@@ -47,7 +47,7 @@ Topics:
 
 Advance:
 
-* [Async Generator](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/async-generator.md)
+* [Async Generator](./Programming%20&%20Web%20Fundamentals/JavaScript%20Core/Advance/Async%20Generator/async-generator.md)
 
 ---
 
